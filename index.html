@@ -1,73 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Your Site Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Short description of your website">
-    
-    <!-- Optional CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        header, footer {
-            background: #24292e;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-        main {
-            padding: 2rem;
-        }
-        section {
-            margin-bottom: 2rem;
-        }
-    </style>
+  <title>Diagonal Gradient Background</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+
+      /* Bottom-left to top-right */
+      background: linear-gradient(to top right, #250338, #112353);
+
+      /* Center the box */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .box {
+      width: 800px;
+      height: 700px;
+      background-color: rgba(42, 28, 66, 0.486);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: rgb(130, 128, 255);
+    }
+
+    .volume-slider {
+      width: 300px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <div class="box">
+    Welcome!
+  </div>
 
-<header>
-    <h1>Your Name</h1>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+  <!-- Volume Slider -->
+  <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
 
-<main>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Short introduction about yourself.</p>
-    </section>
+  <!-- Background music -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="Book.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <ul>
-            <li>Project One</li>
-            <li>Project Two</li>
-            <li>Project Three</li>
-        </ul>
-    </section>
+  <script>
+    const music = document.getElementById('bgMusic');
+    const slider = document.getElementById('volumeSlider');
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: your@email.com</p>
-    </section>
-</main>
+    // Set initial volume (0.5 = 50%)
+    music.volume = 0.5;
 
-<footer>
-    <p>© 2026 Your Name. Hosted on GitHub Pages.</p>
-</footer>
-
+    // Update volume when slider changes
+    slider.addEventListener('input', () => {
+      music.volume = slider.value / 100;
+    });
+  </script>
 </body>
 </html>
