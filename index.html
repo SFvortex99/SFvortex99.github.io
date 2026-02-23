@@ -13,18 +13,14 @@
     body {
       margin: 0;
       min-height: 100vh;
-
-      /* Bottom-left to top-right gradient */
       background: linear-gradient(to top right, #250338, #112353);
-
-      
-
-      /* Center everything vertically */
       display: flex;
       flex-direction: column;
       align-items: center;
       font-family: 'Baloo 2', cursive;
       color: rgb(107, 193, 243);
+      position: relative;
+      overflow-x: hidden;
     }
 
     /* Intro box */
@@ -43,19 +39,8 @@
       margin-top: 40px;
     }
 
-    .intro-box h1 {
-      font-size: 60px;
-      margin: 0;
-      margin-bottom: -30px;
-      font-weight: 700;
-    }
-
-    .intro-box h2 {
-      font-size: 36px;
-      margin: 0;
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
+    .intro-box h1 { font-size: 60px; margin: 0; margin-bottom: -30px; font-weight: 700; }
+    .intro-box h2 { font-size: 36px; margin: 0; margin-bottom: 10px; font-weight: 400; }
 
     /* Social icons inside intro box */
     .social-icons {
@@ -77,45 +62,33 @@
       filter: drop-shadow(0 0 10px white);
     }
 
-    /* Main box */
-    .box {
-      width: 800px;
-      height: 700px;
-      background-color: rgba(34, 26, 49, 0.486);
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 200px;
-      position: relative; /* for slider */
-      z-index: 1;
-    }
-    /* Main box 1*/
+    /* Main box 1 */
     .box1 {
       width: 800px;
       height: 700px;
       background-color: rgba(34, 26, 49, 0.486);
       border-radius: 12px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      /* display: flex;
-      flex-direction: column; */
-      padding-top: -200px;
-      position: relative; /* for slider */
+      position: relative;
+      padding-top: 60px;
+      padding-left: 80px;
       z-index: 1;
     }
-    .box1 h1 {
-   padding-left: 80px;
-   padding-top: 60px;
-}
 
-.box1 a {
-   padding-left: 130px;
-   padding-top: -100px;
-   font-size: 30px;
-   color: #8f52ff;
-}
+    .box1 h1 { margin-bottom: 20px; }
+    .box1 a { display: block; font-size: 30px; color: #8f52ff; margin-bottom: 10px; }
 
+    /* Top-right image */
+    .top-right-image {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      text-align: center;
+    }
+    .top-right-image img { width: 150px; height: auto; }
+    .top-right-image p { margin-top: 10px; color: rgb(137, 207, 240); font-size: 16px; }
+
+    /* Volume slider */
     .volume-slider {
       position: absolute;
       top: 50%;
@@ -126,9 +99,50 @@
       z-index: 2;
     }
 
+    /* ENTER SCREEN OVERLAY */
+    #enter-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;
+      transition: opacity 0.6s ease;
+    }
+    #enter-overlay.fade-out { opacity: 0; pointer-events: none; }
+    #enter-content { text-align: center; font-family: Arial, sans-serif; letter-spacing: 2px; }
+    #enter-content h1 { font-size: 3rem; margin: 0; }
+    #enter-content p { font-size: 1rem; opacity: 0.7; margin-top: 10px; }
+
+    /* Music toggle button */
+    .music-controls button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: rgba(137, 207, 240, 0.2);
+      color: rgb(137, 207, 240);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .music-controls button:hover { background-color: rgba(137, 207, 240, 0.4); }
   </style>
 </head>
 <body>
+
+  <!-- ENTER SCREEN OVERLAY -->
+  <div id="enter-overlay">
+    <div id="enter-content">
+      <h1>CLICK THIS FOR MUSIC</h1>
+      <p>Click to continue</p>
+    </div>
+  </div>
 
   <!-- Intro box -->
   <div class="intro-box">
@@ -167,39 +181,63 @@
 
   <!-- Main box -->
   <div class="box1">
-    <h1> Current things I like</h1>
-    <a>-🎸Guitar</a> <br>
-    <a>-🤖Arc Raiders</a> <br>
-    <a>-👑Clash royale</a> <br>
-    <a>-🏄surfing</a>
+    <h1>Current things I like</h1>
+    <a>-🎸 Guitar</a>
+    <a>-🤖 Arc Raiders</a>
+    <a>-👑 Clash Royale</a>
+    <a>-🏄 Surfing</a>
+
     <div class="top-right-image">
-  <img style= "width: 150px ; height: auto; margin-left: 550px; margin-top: -700px;" src="guitar.jpg" alt="Image"> 
-  
-  
-</div>
-    
-    <!-- Volume slider is inside box but positioned outside -->
+      <img src="guitar.jpg" alt="Image">
+      <p>My Guitar</p>
+    </div>
+
     <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
   </div>
 
   <!-- Background music -->
-  <audio id="bgMusic" autoplay loop>
+  <audio id="bgMusic" loop>
     <source src="https://github.com/SFvortex99/SFvortex99.github.io/raw/refs/heads/main/Book.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <script>
-    const music = document.getElementById('bgMusic');
-    const slider = document.getElementById('volumeSlider');
+  <!-- Music toggle button -->
+  <div class="music-controls" style="position: absolute; top: 20px; right: 20px;">
+    <button id="musicToggle">Play Music</button>
+  </div>
 
-    // Set initial volume (0.5 = 50%)
+  <script>
+    const overlay = document.getElementById("enter-overlay");
+    const music = document.getElementById("bgMusic");
+    const slider = document.getElementById("volumeSlider");
+    const toggleBtn = document.getElementById("musicToggle");
+
+    // Set initial volume
     music.volume = 0.5;
 
-    // Update volume when slider changes
+    // Volume slider
     slider.addEventListener('input', () => {
       music.volume = slider.value / 100;
     });
-  </script>
 
+    // Enter overlay click
+    overlay.addEventListener("click", () => {
+      music.play().catch(() => console.log("Autoplay blocked."));
+      overlay.classList.add("fade-out");
+      setTimeout(() => overlay.style.display = "none", 600);
+      toggleBtn.textContent = "Pause Music";
+    });
+
+    // Music toggle button
+    toggleBtn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play().catch(() => console.log("Autoplay blocked."));
+        toggleBtn.textContent = "Pause Music";
+      } else {
+        music.pause();
+        toggleBtn.textContent = "Play Music";
+      }
+    });
+  </script>
 </body>
 </html>
