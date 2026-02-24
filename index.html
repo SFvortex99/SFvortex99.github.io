@@ -32,6 +32,8 @@
       margin-bottom: 30px;
       text-align: center;
       margin-top: 40px;
+      z-index: 2;
+      position: relative;
     }
 
     .intro-box h1 { font-size: 60px; margin: 0; margin-bottom: -30px; }
@@ -66,7 +68,27 @@
       position: relative;
       padding-top: 60px;
       padding-left: 80px;
+      z-index: 2;
     }
+
+    .box2 {
+      text-align: right;
+      margin-right: 50px;
+      margin-bottom: 100px;
+      position: relative;
+      padding-top: 60px;
+      padding-left: 80px;
+      z-index: 2;
+      top: -100px;
+    }
+
+    .map {
+    width: 50px;
+    height: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
 
     .box1 a { display: block; font-size: 30px; color: #8f52ff; }
 
@@ -78,8 +100,8 @@
     }
 
     .top-right-image img { 
-      width: 170px;      /* made 20px bigger */
-      border-radius: 12px; /* rounded corners */
+      width: 170px;
+      border-radius: 12px;
     }
 
     .volume-slider {
@@ -100,6 +122,8 @@
       margin-top: 40px;
       margin-bottom: 80px;
       text-align: center;
+      z-index: 2;
+      position: relative;
     }
 
     .news-date { color: rgb(137, 207, 240); }
@@ -127,6 +151,7 @@
       background-color: rgba(137, 207, 240, 0.2);
       color: rgb(137, 207, 240);
       cursor: pointer;
+      z-index: 1000;
     }
 
     /* Spinning animation for Barbhut funny image */
@@ -143,8 +168,83 @@
       height: 120px;
       border-radius: 12px;
       animation: spin 6s linear infinite;
-      z-index: 10;
+      z-index: 2;
+      cursor: pointer;
     }
+
+    /* Click Me! text */
+    .click-me-text {
+      position: absolute;
+      bottom: 160px; 
+      left: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: rgb(137, 207, 240);
+      text-shadow: 0 0 10px white, 0 0 20px rgb(137, 207, 240);
+      cursor: pointer;
+      z-index: 3;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ---------- Fog ---------- */
+    .fog {
+      width: 200%;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .fog .image01, .fog .image02 {
+      float: left;
+      height: 100%;
+      width: 50%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    #foglayer_01 .image01, #foglayer_01 .image02 {
+      background-image: url("https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png");
+      animation: foglayer_01_opacity 10s linear infinite, foglayer_moveme 15s linear infinite;
+    }
+
+    #foglayer_02 .image01, #foglayer_02 .image02,
+    #foglayer_03 .image01, #foglayer_03 .image02 {
+      background-image: url("https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png");
+      animation: foglayer_02_opacity 21s linear infinite, foglayer_moveme 13s linear infinite;
+    }
+
+    @keyframes foglayer_01_opacity {
+      0% { opacity: .1; }
+      22% { opacity: .5; }
+      40% { opacity: .28; }
+      58% { opacity: .4; }
+      80% { opacity: .16; }
+      100% { opacity: .1; }
+    }
+
+    @keyframes foglayer_02_opacity {
+      0% { opacity: .5; }
+      25% { opacity: .2; }
+      50% { opacity: .1; }
+      80% { opacity: .3; }
+      100% { opacity: .5; }
+    }
+
+    @keyframes foglayer_moveme {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
   </style>
 </head>
 
@@ -162,7 +262,6 @@
   <h2>I'm Vortex!</h2>
 
   <div class="social-icons">
-
     <!-- Steam -->
     <a href="https://steamcommunity.com/id/zjackrabbit2" target="_blank">
       <svg class="social-logo" viewBox="0 0 640 640">
@@ -173,7 +272,7 @@
     <!-- Roblox -->
     <a href="https://www.roblox.com/users/3183484125/profile" target="_blank">
       <svg class="social-logo" viewBox="0 0 302.7 302.7">
-        <path d="M120.5,271.7c-110.9-28.6-120-31-119.9-31.5C0.7,239.6,62.1,0.5,62.2,0.4c0,0,54,13.8,119.9,30.8s120,30.8,120.1,30.8c0.2,0,0.2,0.4,0.1,0.9c-0.2,1.5-61.5,239.3-61.7,239.5C240.6,302.5,186.5,288.7,120.5,271.7z"/>
+<path id="path20" inkscape:connector-curvature="0" class="st0" d="M120.5,271.7c-110.9-28.6-120-31-119.9-31.5  C0.7,239.6,62.1,0.5,62.2,0.4c0,0,54,13.8,119.9,30.8s120,30.8,120.1,30.8c0.2,0,0.2,0.4,0.1,0.9c-0.2,1.5-61.5,239.3-61.7,239.5  C240.6,302.5,186.5,288.7,120.5,271.7z M174.9,158c3.2-12.6,5.9-23.1,6-23.4c0.1-0.5-2.3-1.2-23.2-6.6c-12.8-3.3-23.5-5.9-23.6-5.8  c-0.3,0.3-12.1,46.6-12,46.7c0.2,0.2,46.7,12.2,46.8,12.1C168.9,180.9,171.6,170.6,174.9,158L174.9,158z"/>
       </svg>
     </a>
 
@@ -190,8 +289,21 @@
         <path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6V239.2L406.9 320.4L264.2 401.6z"/>
       </svg>
     </a>
-
   </div>
+</div>
+
+<!-- Fixed fog layers -->
+<div id="foglayer_01" class="fog">
+  <div class="image01"></div>
+  <div class="image02"></div>
+</div>
+<div id="foglayer_02" class="fog">
+  <div class="image01"></div>
+  <div class="image02"></div>
+</div>
+<div id="foglayer_03" class="fog">
+  <div class="image01"></div>
+  <div class="image02"></div>
 </div>
 
 <div class="box1">
@@ -201,6 +313,22 @@
   <a>-👑 Clash Royale</a>
   <a>-🏄 Surfing and Skateboarding</a>
   <a>-🟦 Blue</a>
+  <a>-🏎️Drifting/racing</a>
+
+  <div class="box2">
+    <h1>Things I dislike</h1>
+    <a>-🟢The color green</a>
+    <a>-🛖Not having money</a>
+    <a>-🌽cornballs</a>
+    <a>-📖 reading</a>
+    <a>-🍂 november</a>
+  </div>
+
+  <div class="map">
+    <a href="https://map-edgers.github.io">
+        <img src="fortnite map.jpg" alt="Map">
+    </a>
+</div>
 
   <div class="top-right-image">
     <img src="guitar.jpg" alt="Guitar">
@@ -209,21 +337,23 @@
 
   <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
 
-  <!-- Spinning image at bottom-left -->
+  <!-- Click Me label -->
+  <div class="click-me-text">Click Me!</div>
   <img src="Barbhut Funny.jpg" class="spinning-image" alt="Spinning Barbhut">
 </div>
 
 <div class="news-box">
   <h1>NEWS!</h1>
   <h3 class="news-date">Last Updated: February 23, 2026</h3>
-  <p>This is where I’ll post updates.</p>
+  <p>"Dinner in this economy?" -Noah Buckston</p>
 </div>
 
 <audio id="bgMusic" loop>
   <source src="https://github.com/SFvortex99/SFvortex99.github.io/raw/refs/heads/main/Book.mp3" type="audio/mpeg">
 </audio>
 
-<div class="music-controls" style="position:absolute;top:20px;right:20px;">
+<!-- Music button now fixed -->
+<div class="music-controls" style="position:fixed; top:20px; right:20px; z-index:999;">
   <button id="musicToggle">Play Music</button>
 </div>
 
@@ -232,6 +362,7 @@ const overlay = document.getElementById("enter-overlay");
 const music = document.getElementById("bgMusic");
 const slider = document.getElementById("volumeSlider");
 const toggleBtn = document.getElementById("musicToggle");
+const spinningImage = document.querySelector('.spinning-image');
 
 music.volume = 0.5;
 
@@ -255,9 +386,21 @@ toggleBtn.addEventListener("click", () => {
     toggleBtn.textContent = "Play Music";
   }
 });
+
+// -------- Spin faster on click ----------
+let spinDuration = 6; // starting 6s
+
+function updateSpin() {
+  spinningImage.style.animation = `spin ${spinDuration}s linear infinite`;
+}
+
+updateSpin();
+
+spinningImage.addEventListener('click', () => {
+  spinDuration = Math.max(0.5, spinDuration - 1); // faster by reducing duration
+  updateSpin();
+});
 </script>
-
-
 
 </body>
 </html>
