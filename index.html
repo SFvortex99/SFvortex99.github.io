@@ -3,10 +3,7 @@
 <head>
   <title>Vortex</title>
 
-  <!--Custom Icon-->
   <link rel="icon" href="lorax3-removebg-preview.png">
-
-  <!-- Import calming bubble font -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
@@ -19,11 +16,9 @@
       align-items: center;
       font-family: 'Baloo 2', cursive;
       color: rgb(107, 193, 243);
-      position: relative;
       overflow-x: hidden;
     }
 
-    /* Intro box */
     .intro-box {
       width: 760px;
       height: 180px;
@@ -39,10 +34,9 @@
       margin-top: 40px;
     }
 
-    .intro-box h1 { font-size: 60px; margin: 0; margin-bottom: -30px; font-weight: 700; }
-    .intro-box h2 { font-size: 36px; margin: 0; margin-bottom: 10px; font-weight: 400; }
+    .intro-box h1 { font-size: 60px; margin: 0; margin-bottom: -30px; }
+    .intro-box h2 { font-size: 36px; margin: 0; margin-bottom: 10px; }
 
-    /* Social icons inside intro box */
     .social-icons {
       display: flex;
       justify-content: center;
@@ -55,6 +49,7 @@
       height: 50px;
       cursor: pointer;
       transition: transform 0.2s, filter 0.2s;
+      fill: rgb(137, 207, 240);
     }
 
     .social-logo:hover {
@@ -62,7 +57,6 @@
       filter: drop-shadow(0 0 10px white);
     }
 
-    /* Main box 1 */
     .box1 {
       width: 800px;
       height: 700px;
@@ -72,38 +66,46 @@
       position: relative;
       padding-top: 60px;
       padding-left: 80px;
-      z-index: 1;
     }
 
-    .box1 h1 { margin-bottom: 20px; }
-    .box1 a { display: block; font-size: 30px; color: #8f52ff; margin-bottom: 10px; }
+    .box1 a { display: block; font-size: 30px; color: #8f52ff; }
 
-    /* Top-right image */
     .top-right-image {
       position: absolute;
       top: 20px;
       right: 20px;
       text-align: center;
     }
-    .top-right-image img { width: 150px; height: auto; }
-    .top-right-image p { margin-top: 10px; color: rgb(137, 207, 240); font-size: 16px; }
 
-    /* Volume slider */
+    .top-right-image img { 
+      width: 170px;      /* made 20px bigger */
+      border-radius: 12px; /* rounded corners */
+    }
+
     .volume-slider {
       position: absolute;
       top: 50%;
       right: -120px;
       transform: translateY(-50%) rotate(270deg);
       width: 200px;
-      cursor: pointer;
-      z-index: 2;
     }
 
-    /* ENTER SCREEN OVERLAY */
+    .news-box {
+      width: 800px;
+      min-height: 200px;
+      background-color: rgba(34, 26, 49, 0.486);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      padding: 40px 60px;
+      margin-top: 40px;
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    .news-date { color: rgb(137, 207, 240); }
+
     #enter-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100vw;
       height: 100vh;
       background: black;
@@ -115,129 +117,147 @@
       cursor: pointer;
       transition: opacity 0.6s ease;
     }
-    #enter-overlay.fade-out { opacity: 0; pointer-events: none; }
-    #enter-content { text-align: center; font-family: Arial, sans-serif; letter-spacing: 2px; }
-    #enter-content h1 { font-size: 3rem; margin: 0; }
-    #enter-content p { font-size: 1rem; opacity: 0.7; margin-top: 10px; }
 
-    /* Music toggle button */
+    #enter-overlay.fade-out { opacity: 0; pointer-events: none; }
+
     .music-controls button {
       padding: 10px 20px;
-      font-size: 16px;
       border-radius: 8px;
       border: none;
       background-color: rgba(137, 207, 240, 0.2);
       color: rgb(137, 207, 240);
       cursor: pointer;
-      transition: background 0.3s;
     }
-    .music-controls button:hover { background-color: rgba(137, 207, 240, 0.4); }
+
+    /* Spinning animation for Barbhut funny image */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .spinning-image {
+      position: absolute;
+      bottom: 20px; 
+      left: 20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      animation: spin 6s linear infinite;
+      z-index: 10;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- ENTER SCREEN OVERLAY -->
-  <div id="enter-overlay">
-    <div id="enter-content">
-      <h1>CLICK THIS FOR MUSIC</h1>
-      <p>Click to continue</p>
-    </div>
+<div id="enter-overlay">
+  <div>
+    <h1>CLICK THIS FOR MUSIC</h1>
+    <p>Click to continue</p>
+  </div>
+</div>
+
+<div class="intro-box">
+  <h1>Welcome!</h1>
+  <h2>I'm Vortex!</h2>
+
+  <div class="social-icons">
+
+    <!-- Steam -->
+    <a href="https://steamcommunity.com/id/zjackrabbit2" target="_blank">
+      <svg class="social-logo" viewBox="0 0 640 640">
+        <path d="M568 320C568 457 456.8 568 319.6 568C205.8 568 110 491.7 80.6 387.6L175.8 426.9C182.2 459 210.7 483.3 244.7 483.3C283.9 483.3 316.6 450.9 314.9 409.8L399.4 349.6C451.5 350.9 495.2 308.7 495.2 256.1C495.2 204.5 453.2 162.6 401.5 162.6C349.8 162.6 307.8 204.6 307.8 256.1L307.8 257.3L248.6 343C233.1 342.1 217.9 346.4 205.1 355.1L72 300.1C82.2 172.4 189.1 72 319.6 72C456.8 72 568 183 568 320zM401.5 193.8C435.9 193.8 463.8 221.7 463.8 256.1C463.8 290.5 435.9 318.4 401.5 318.4C367.1 318.4 339.2 290.5 339.2 256.1C339.2 221.7 367.1 193.8 401.5 193.8z"/>
+      </svg>
+    </a>
+
+    <!-- Roblox -->
+    <a href="https://www.roblox.com/users/3183484125/profile" target="_blank">
+      <svg class="social-logo" viewBox="0 0 302.7 302.7">
+        <path d="M120.5,271.7c-110.9-28.6-120-31-119.9-31.5C0.7,239.6,62.1,0.5,62.2,0.4c0,0,54,13.8,119.9,30.8s120,30.8,120.1,30.8c0.2,0,0.2,0.4,0.1,0.9c-0.2,1.5-61.5,239.3-61.7,239.5C240.6,302.5,186.5,288.7,120.5,271.7z"/>
+      </svg>
+    </a>
+
+    <!-- Twitch -->
+    <a href="https://www.twitch.tv/sfvortex99" target="_blank">
+      <svg class="social-logo" viewBox="0 0 512 512">
+        <path d="M391 123h-60V308h60V123zM271 123h-60V308h60V123zM93 0L0 88v324h123v80l80-80h98l123-123V0H93zm382 301L371 423H293l-68 68V423H93V88h382v213z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@Vortex_cr99" target="_blank">
+      <svg class="social-logo" viewBox="0 0 640 640">
+        <path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6V239.2L406.9 320.4L264.2 401.6z"/>
+      </svg>
+    </a>
+
+  </div>
+</div>
+
+<div class="box1">
+  <h1>Current things I like</h1>
+  <a>-🎸 Guitar and Viola</a>
+  <a>-🤖 Arc Raiders</a>
+  <a>-👑 Clash Royale</a>
+  <a>-🏄 Surfing and Skateboarding</a>
+  <a>-🟦 Blue</a>
+
+  <div class="top-right-image">
+    <img src="guitar.jpg" alt="Guitar">
+    <p>My Guitar</p>
   </div>
 
-  <!-- Intro box -->
-  <div class="intro-box">
-    <h1>Welcome!</h1>
-    <h2>I'm Vortex!</h2>
-    <div class="social-icons">
-      <!-- Steam -->
-      <a href="https://steamcommunity.com/id/zjackrabbit2" target="_blank" rel="noopener noreferrer">
-        <svg class="social-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="rgb(137, 207, 240)">
-          <path d="M568 320C568 457 456.8 568 319.6 568C205.8 568 110 491.7 80.6 387.6L175.8 426.9C182.2 459 210.7 483.3 244.7 483.3C283.9 483.3 316.6 450.9 314.9 409.8L399.4 349.6C451.5 350.9 495.2 308.7 495.2 256.1C495.2 204.5 453.2 162.6 401.5 162.6C349.8 162.6 307.8 204.6 307.8 256.1L307.8 257.3L248.6 343C233.1 342.1 217.9 346.4 205.1 355.1L72 300.1C82.2 172.4 189.1 72 319.6 72C456.8 72 568 183 568 320zM227.7 448.3L197.2 435.7C202.8 447.3 212.5 456.5 224.4 461.5C251.3 472.7 282.2 459.9 293.4 433.1C298.8 420.1 298.9 405.8 293.5 392.8C288.1 379.8 278 369.6 265 364.2C252.1 358.8 238.3 359 226.1 363.6L257.6 376.6C277.4 384.8 286.8 407.5 278.5 427.3C270.2 447.2 247.5 456.5 227.7 448.3zM401.5 193.8C435.9 193.8 463.8 221.7 463.8 256.1C463.8 290.5 435.9 318.4 401.5 318.4C367.1 318.4 339.2 290.5 339.2 256.1C339.2 221.7 367.1 193.8 401.5 193.8zM401.6 302.8C427.4 302.8 448.4 281.8 448.4 256C448.4 230.2 427.4 209.2 401.6 209.2C375.8 209.2 354.8 230.2 354.8 256C354.8 281.8 375.8 302.8 401.6 302.8z"/>
-        </svg>
-      </a>
+  <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
 
-      <!-- Roblox -->
-      <a href="https://www.roblox.com/users/3183484125/profile" target="_blank" rel="noopener noreferrer">
-        <svg class="social-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302.7 302.7" fill="rgb(137, 207, 240)">
-          <path d="M120.5,271.7c-110.9-28.6-120-31-119.9-31.5  C0.7,239.6,62.1,0.5,62.2,0.4c0,0,54,13.8,119.9,30.8s120,30.8,120.1,30.8c0.2,0,0.2,0.4,0.1,0.9c-0.2,1.5-61.5,239.3-61.7,239.5  C240.6,302.5,186.5,288.7,120.5,271.7z M174.9,158c3.2-12.6,5.9-23.1,6-23.4c0.1-0.5-2.3-1.2-23.2-6.6c-12.8-3.3-23.5-5.9-23.6-5.8  c-0.3,0.3-12.1,46.6-12,46.7c0.2,0.2,46.7,12.2,46.8,12.1C168.9,180.9,171.6,170.6,174.9,158L174.9,158z"/>
-        </svg>
-      </a>
+  <!-- Spinning image at bottom-left -->
+  <img src="Barbhut Funny.jpg" class="spinning-image" alt="Spinning Barbhut">
+</div>
 
-      <!-- Twitch -->
-      <a href="https://www.twitch.tv/sfvortex99" target="_blank" rel="noopener noreferrer">
-        <svg class="social-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="rgb(137, 207, 240)">
-          <path d="M391 123h-60V308h60V123zM271 123h-60V308h60V123zM93 0L0 88v324h123v80l80-80h98l123-123V0H93zm382 301L371 423H293l-68 68V423H93V88h382v213z"/>
-        </svg>
-      </a>
+<div class="news-box">
+  <h1>NEWS!</h1>
+  <h3 class="news-date">Last Updated: February 23, 2026</h3>
+  <p>This is where I’ll post updates.</p>
+</div>
 
-      <!-- YouTube -->
-      <a href="https://www.youtube.com/@Vortex_cr99" target="_blank" rel="noopener noreferrer">
-        <svg class="social-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="rgb(137, 207, 240)">
-          <path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z"/>
-        </svg>
-      </a>
-    </div>
-  </div>
+<audio id="bgMusic" loop>
+  <source src="https://github.com/SFvortex99/SFvortex99.github.io/raw/refs/heads/main/Book.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Main box -->
-  <div class="box1">
-    <h1>Current things I like</h1>
-    <a>-🎸 Guitar</a>
-    <a>-🤖 Arc Raiders</a>
-    <a>-👑 Clash Royale</a>
-    <a>-🏄 Surfing</a>
+<div class="music-controls" style="position:absolute;top:20px;right:20px;">
+  <button id="musicToggle">Play Music</button>
+</div>
 
-    <div class="top-right-image">
-      <img src="guitar.jpg" alt="Image">
-      <p>My Guitar</p>
-    </div>
+<script>
+const overlay = document.getElementById("enter-overlay");
+const music = document.getElementById("bgMusic");
+const slider = document.getElementById("volumeSlider");
+const toggleBtn = document.getElementById("musicToggle");
 
-    <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
-  </div>
+music.volume = 0.5;
 
-  <!-- Background music -->
-  <audio id="bgMusic" loop>
-    <source src="https://github.com/SFvortex99/SFvortex99.github.io/raw/refs/heads/main/Book.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+slider.addEventListener('input', () => {
+  music.volume = slider.value / 100;
+});
 
-  <!-- Music toggle button -->
-  <div class="music-controls" style="position: absolute; top: 20px; right: 20px;">
-    <button id="musicToggle">Play Music</button>
-  </div>
+overlay.addEventListener("click", () => {
+  music.play();
+  overlay.classList.add("fade-out");
+  setTimeout(() => overlay.style.display = "none", 600);
+  toggleBtn.textContent = "Pause Music";
+});
 
-  <script>
-    const overlay = document.getElementById("enter-overlay");
-    const music = document.getElementById("bgMusic");
-    const slider = document.getElementById("volumeSlider");
-    const toggleBtn = document.getElementById("musicToggle");
+toggleBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    toggleBtn.textContent = "Pause Music";
+  } else {
+    music.pause();
+    toggleBtn.textContent = "Play Music";
+  }
+});
+</script>
 
-    // Set initial volume
-    music.volume = 0.5;
 
-    // Volume slider
-    slider.addEventListener('input', () => {
-      music.volume = slider.value / 100;
-    });
 
-    // Enter overlay click
-    overlay.addEventListener("click", () => {
-      music.play().catch(() => console.log("Autoplay blocked."));
-      overlay.classList.add("fade-out");
-      setTimeout(() => overlay.style.display = "none", 600);
-      toggleBtn.textContent = "Pause Music";
-    });
-
-    // Music toggle button
-    toggleBtn.addEventListener("click", () => {
-      if (music.paused) {
-        music.play().catch(() => console.log("Autoplay blocked."));
-        toggleBtn.textContent = "Pause Music";
-      } else {
-        music.pause();
-        toggleBtn.textContent = "Play Music";
-      }
-    });
-  </script>
 </body>
 </html>
