@@ -83,12 +83,12 @@
     }
 
     .map {
-    width: 50px;
-    height: auto;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-}
+      width: 50px;
+      height: auto;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+    }
 
     .box1 a { display: block; font-size: 30px; color: #8f52ff; }
 
@@ -154,7 +154,6 @@
       z-index: 1000;
     }
 
-    /* Spinning animation for Barbhut funny image */
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -172,7 +171,6 @@
       cursor: pointer;
     }
 
-    /* Click Me! text */
     .click-me-text {
       position: absolute;
       bottom: 160px; 
@@ -192,7 +190,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ---------- Fog ---------- */
     .fog {
       width: 200%;
       height: 100vh;
@@ -269,7 +266,7 @@
       </svg>
     </a>
 
-    <!-- Roblox -->
+   <!-- Roblox -->
     <a href="https://www.roblox.com/users/3183484125/profile" target="_blank">
       <svg class="social-logo" viewBox="0 0 302.7 302.7">
 <path id="path20" inkscape:connector-curvature="0" class="st0" d="M120.5,271.7c-110.9-28.6-120-31-119.9-31.5  C0.7,239.6,62.1,0.5,62.2,0.4c0,0,54,13.8,119.9,30.8s120,30.8,120.1,30.8c0.2,0,0.2,0.4,0.1,0.9c-0.2,1.5-61.5,239.3-61.7,239.5  C240.6,302.5,186.5,288.7,120.5,271.7z M174.9,158c3.2-12.6,5.9-23.1,6-23.4c0.1-0.5-2.3-1.2-23.2-6.6c-12.8-3.3-23.5-5.9-23.6-5.8  c-0.3,0.3-12.1,46.6-12,46.7c0.2,0.2,46.7,12.2,46.8,12.1C168.9,180.9,171.6,170.6,174.9,158L174.9,158z"/>
@@ -292,7 +289,7 @@
   </div>
 </div>
 
-<!-- Fixed fog layers -->
+<!-- Fog layers -->
 <div id="foglayer_01" class="fog">
   <div class="image01"></div>
   <div class="image02"></div>
@@ -328,16 +325,15 @@
     <a href="https://map-edgers.github.io">
         <img src="fortnite map.jpg" alt="Map">
     </a>
-</div>
+  </div>
 
   <div class="top-right-image">
     <img src="guitar.jpg" alt="Guitar">
     <p>My Guitar</p>
   </div>
 
-  <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
+  <input type="range" min="0" max="100" value="30" class="volume-slider" id="volumeSlider">
 
-  <!-- Click Me label -->
   <div class="click-me-text">Click Me!</div>
   <img src="Barbhut Funny.jpg" class="spinning-image" alt="Spinning Barbhut">
 </div>
@@ -352,7 +348,6 @@
   <source src="https://github.com/SFvortex99/SFvortex99.github.io/raw/refs/heads/main/Book.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Music button now fixed -->
 <div class="music-controls" style="position:fixed; top:20px; right:20px; z-index:999;">
   <button id="musicToggle">Play Music</button>
 </div>
@@ -364,7 +359,9 @@ const slider = document.getElementById("volumeSlider");
 const toggleBtn = document.getElementById("musicToggle");
 const spinningImage = document.querySelector('.spinning-image');
 
-music.volume = 0.5;
+// Start music at 30% volume
+music.volume = 0.3;
+slider.value = 30; // match slider to 30%
 
 slider.addEventListener('input', () => {
   music.volume = slider.value / 100;
@@ -387,17 +384,13 @@ toggleBtn.addEventListener("click", () => {
   }
 });
 
-// -------- Spin faster on click ----------
 let spinDuration = 6; // starting 6s
-
 function updateSpin() {
   spinningImage.style.animation = `spin ${spinDuration}s linear infinite`;
 }
-
 updateSpin();
-
 spinningImage.addEventListener('click', () => {
-  spinDuration = Math.max(0.5, spinDuration - 1); // faster by reducing duration
+  spinDuration = Math.max(0.5, spinDuration - 1);
   updateSpin();
 });
 </script>
